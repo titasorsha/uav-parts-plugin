@@ -1,0 +1,12 @@
+{
+  "name": "uav-parts",
+  "owner": { "name": "titasorsha" },
+  "description": "Evidence-graded drone parts search for Claude Code. Invite-only: you need a personal access key.",
+  "plugins": [
+    {
+      "name": "uav-parts",
+      "source": "./plugins/uav-parts",
+      "description": "Find, compare and source drone parts from an evidence-graded catalogue, with origin and compliance screening and build checks."
+    }
+  ]
+}
