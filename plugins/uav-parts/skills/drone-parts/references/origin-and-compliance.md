@@ -24,7 +24,7 @@ The tools describe origin evidence in three places with three sets of labels. In
 | Stated for this model | `model_claim` | `origin_stated` | `origin_stated` |
 | Stated as made in an excluded country | `model_claim` (value is the excluded country) | `made_in_china_stated` | `origin_excluded` |
 | Stated for the family (this model is a listed member) | `family_claim` | `origin_stated` | `origin_stated`, with `level: family` |
-| Company-wide statement only, not this model | `company_claim` | one of the three "not stated" tiers, unless the requirement sets `broadest_scope: "organization"` | `company_statement`, `company_statement_excluded` |
+| Company-wide statement only, not this model | `company_claim` | `origin_stated` when the statement is not hedged (it counts by default, and the row's `assumed` says "company-wide statement is counted"); otherwise one of the three "not stated" tiers | `company_statement`, `company_statement_excluded` |
 | Only partly stated | `assembly_claim`, `region_claim`, `mixed_components`, `facility_only` | — | `assembly_only`, `origin_one_of` |
 | Not stated; maker is not Chinese/HK | `unknown` | `non_chinese_company` | `non_chinese_company` |
 | Not stated; maker's base unclear | `unknown` | `company_unclear` | `company_unclear` |
@@ -35,7 +35,7 @@ What the partial rungs mean:
 - `company_claim`: a company-wide statement for that category. Verify the exact model.
 - `assembly_claim`: assembly only, not where the parts are made.
 - `facility_only`: a factory location with no product tied to it.
-- `region_claim`: e.g. "EU"; never an exact country.
+- `region_claim`: e.g. "EU"; never an exact country. It still settles "not made in China": EU, EEA and USMCA are compared through their member countries.
 - `mixed_components`: components from several countries; finished origin unknown.
 
 ## "Not made in China" searches

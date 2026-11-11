@@ -110,7 +110,7 @@ Company base, design country, assembly, finished-product manufacture, component 
   - Write "the maker states NDAA compliance", never "NDAA compliant". A statement is not a certification.
   - The official list is a registry record: give the date it was saved (the entry's `reviewed_on`). Say "not found on the list as saved on <date>", never "not listed".
   - No statement means "not found on the maker's pages", never "not compliant".
-  - Hedged statements ("NDAA version available") and company-wide ones never pass a hard requirement: report them as what they are.
+  - Hedged statements ("NDAA version available") never pass a hard requirement; company-wide ones pass only for origin. Say which.
   - **Match the scheme to the customer.** NDAA, Blue UAS and TAA are US schemes; ITAR and ECCN are US export controls. For a customer outside the US, say they may not be the test that customer applies, and suggest asking which declaration it accepts.
   - **Crossing a border.** When a pick would ship from its maker's country to another, give its export class and ITAR statement, or put "export class not found: ask <maker>" under "Before you buy".
 - **For a purchase that depends on origin or compliance,** recommend a written declaration for the exact model. Draft the question; never send it.
