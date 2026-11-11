@@ -37,7 +37,7 @@ Makers publish ratings without their conditions. A convention reads such a ratin
 
 | Convention | What it reads | Turn it off when |
 |---|---|---|
-| `unspecified_chemistry_is_lipo` | "3–6S" with no chemistry as LiPo, 4.2 V per cell | the person uses LiHV or Li-ion |
+| `unspecified_chemistry_is_lipo` | "3–6S" with no chemistry as LiPo, 4.2 V per cell, and a bare cell count as the operating range (not an absolute maximum) | the person uses LiHV or Li-ion |
 | `esc_rating_convention` | an ESC continuous rating with no stated duration, cooling or current basis as the maker's standard continuous rating, and a board's unqualified figure as per motor | the rating must hold for a stated time or with no airflow (fixed-wing cruise, hover-heavy duty). Then give the published figure and say it isn't confirmed for those conditions |
 | `battery_rating_convention` | a capacity with no stated basis or discharge rate as the pack's rated capacity | the person needs capacity at a stated discharge rate |
 | `firmware_claim_convention` | a maker's "supports ArduPilot/PX4" with no named target or release as stated | the buy depends on a specific target: check the firmware's own board list |

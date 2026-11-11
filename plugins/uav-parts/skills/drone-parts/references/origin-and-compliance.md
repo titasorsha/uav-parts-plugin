@@ -44,7 +44,11 @@ Makers rarely publish where each model is made. When a part's origin isn't estab
 
 1. **Origin stated for this model:** confirmed. Give the evidence level.
 2. **Made by a non-Chinese company, factory not published:** the useful shortlist. Show the company base and its evidence. Give the person the question to send, from `to_confirm`: "Ask <maker> where this exact model (order code) is manufactured, ideally in writing." Never call these "not made in China".
-3. **Chinese/HK company, factory not published:** give the count only. Don't recommend them for this requirement unless the person asks.
+3. **Chinese/HK company, factory not published:** give the count only, from `hidden_chinese_makers`. Don't recommend them for this requirement.
+   - When "not made in China" is a hard requirement, `search_parts` leaves these models out of its list, and the results page hides them behind a "Chinese/HK makers" tick box. They still count in `counts` as conditional candidates. They are not excluded and not "made in China": their origin is unknown.
+   - Say it in one line: "<N> more are from Chinese/HK makers that don't publish where the model is made; they are hidden on the page."
+   - Pass `include_chinese_makers: true` only when the person explicitly asks to include Chinese companies that may build outside China. Then they are listed and shown on the page, still as "needs checking". The search ranks them after the other makers, so give them their own rows in the table, below the non-Chinese shortlist, with the origin cell "? Chinese/HK maker: ask where it's made". Say how many there are, and draft the question for the maker: where the exact model is made.
+   - A preference (a soft origin requirement) hides nothing.
 
 Finished-product origin is not component origin. For "no Chinese components", a passing origin claim settles only where the product was made. Receiver chips, cells and antennas need their own evidence: look in the part's `legacy_text` and say what remains unknown.
 
