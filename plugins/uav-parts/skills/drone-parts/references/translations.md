@@ -39,6 +39,7 @@ Read this when a request states an outcome ("flies 25 minutes", "fits a 5-inch q
 | "telemetry and video in one" | `radio.functions` `contains_all` ["telemetry","video"] | |
 | "low latency" | `radio.latency` `lte`; `radio.rc_packet_rate` `gte` — soft | Ask for a number, or say "lowest available" and rank. |
 | "encrypted" | `radio.encryption` `contains_any` ["aes128","aes256"] | `proprietary` is not AES: say so. |
+| "anti-jam link", "frequency hopping", "LPI/LPD", "mesh" | `radio.interference_resilience` `contains_any` [...] — e.g. ["lpi_lpd","interference_cancellation","adaptive_frequency_hopping"] | Almost every 2.4 GHz RC link hops (`fhss`); that alone isn't military-grade anti-jam. Name the technique each part states. |
 | "drive servos directly, no FC" | `radio.pwm_outputs` `gte` servo count | |
 | "legal in the EU / UK" | band via `translate_requirement` `destination` | Licence-free power limit per band. Region rules are a check to state, not a catalogue filter. |
 | "1 W" | `radio.rf_output_power` `gte` 1 W, `assumptions` incl. `rf_power_convention` | RF watts, not input watts. |
@@ -53,6 +54,7 @@ Read this when a request states an outcome ("flies 25 minutes", "fits a 5-inch q
 | "racing / lowest latency" | `video.latency` `lte` — soft | Sparse: most come back unknown. |
 | "25 mW for EU", "1 W long range" | `video.rf_output_power` (list of levels) | A list: "has a 25 mW level" vs "can do 1 W". |
 | "SmartAudio / MSP control" | `video.control_protocols` `contains_any` | |
+| "fibre-optic FPV", "unjammable link" | `product.form` `eq` "fiber_optic_link"; `video.fiber_length` `gte` | Few fibre makers publish model pages: expect a short list and say so. |
 
 ## Antenna
 
@@ -127,7 +129,11 @@ Read this when a request states an outcome ("flies 25 minutes", "fits a 5-inch q
 | "PPK mapping" | `gnss.raw_logging` + `gnss.event_input` | |
 | "for ArduPilot over CAN" | `gnss.output_protocols` `contains_any` ["dronecan"]; `gnss.autopilot_support` | |
 | "10 Hz" | `gnss.update_rate` `gte` 10 | |
-| "anti-jamming" | **Not stored.** | Bands and constellations aren't jamming resistance. Read maker pages. |
+| "anti-jam antenna", "CRPA unit" | form `crpa` | Antennas and anti-jam units with their own electronics; check the technique row below too. |
+| "anti-jamming", "keeps GPS when jammed" | `gnss.interference_protection` `contains_any` ["crpa_nulling","beam_steering","adaptive_notch_filter","pulse_blanking"] — hard | Detection (`jamming_detection`, `spoofing_detection`) only warns; it doesn't keep the fix. Say which the part has. Bands and constellations aren't jamming resistance. |
+| "CRPA", "N-element", "nulls N jammers" | `gnss.antenna_elements` `gte` N; `gnss.nulling_capacity` `gte` N (an N-element array nulls at most N−1) | Few makers state these; unknown is not no. |
+| "J/S of X dB" | `gnss.jamming_rejection` `gte` X | Stated floors ("> 110 dB with GNSS receiver") are recorded as the floor; J/S and J/N differ, and a "jammer suppression" figure is not J/S. |
+| "anti-spoofing", "OSNMA" | `gnss.interference_protection` `contains_any` ["spoofing_mitigation","signal_authentication"] | `signal_authentication` is a stated authenticated-signal service (OSNMA etc.), not M-code compatibility. |
 
 ## Camera
 
@@ -172,4 +178,5 @@ Read this when a request states an outcome ("flies 25 minutes", "fits a 5-inch q
 | "XT60 for 60 A" | `wiring.connector_family`; `wiring.current_rating` `gte` 60 | |
 | "terrain following to 50 m" | forms ["rangefinder","lidar_scanner","radar_altimeter"]; `sensor.range` `covers` 50 | Range is usually for a stated target reflectivity: say so. |
 | "detect manned aircraft" | `sensor.adsb_functions` `contains_any` ["adsb_in_1090","adsb_in_978"] | 978 MHz UAT is US-only. |
+| "navigate without GPS", "GPS-denied" | `sensor.kind` `eq` "visual_navigation" | Camera-based positioning modules; `optical_flow` only holds position at low height. Very few are catalogued. |
 | "airspeed to 40 m/s" | `airspeed.speed_range` `covers` 40 or `airspeed.pressure_range` | Dynamic pressure q = ½ ρ v² (ρ ≈ 1.225 kg/m³ at sea level): 40 m/s ≈ 980 Pa. |

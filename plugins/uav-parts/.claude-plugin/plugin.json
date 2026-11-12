@@ -1,6 +1,6 @@
 {
   "name": "uav-parts",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Find, compare and source drone parts from an evidence-graded catalogue: requirements search, drop-in alternatives, build and BOM checks, country of origin and makers' NDAA, Blue UAS, ITAR and export statements. Invite-only: asks for your personal access key.",
   "author": {
     "name": "titasorsha"
